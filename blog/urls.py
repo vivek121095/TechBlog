@@ -1,6 +1,5 @@
 from django.conf.urls import url,include
 from blog import views
-from django.conf import settings
 
 urlpatterns = [
     url(r'^$', views.PostListView.as_view(),name='post_list'),
@@ -16,9 +15,3 @@ urlpatterns = [
     url(r'^profile-update/$',views.update_profile,name='update_profile'),
     url(r'^profile/(?P<user_id>\d+)/$',views.profile,name='profile'),
 ]
-
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns=[
-        url(r'^__debug__/',include(debug_toolbar.urls))
-    ]+urlpatterns
