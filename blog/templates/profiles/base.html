@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block t_block %}{% endblock%}</title>
+    <!-- Bootstarp -- >
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- medium style editor-->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+    <!-- Custom css-->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
+    <script
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+  </head>
+  <body class="extra-margin">
+
+    <!-- navbar -->
+    <nav class="navbar navbar-default techfont">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand bigbrand" href="{%url 'post_list' %}">TechBlog</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar">
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+              <li class="nav-item"><a class="navbar-link" href="{% url 'post_new' %}">New Post</a></li>
+              <li class="nav-item"><a class="navbar-link" href="{% url 'post_draft_list' %}"> Drafts</a></li>
+              <li class="nav-item"><a class="navbar-link" href="{% url 'logout' %}">Logout</a></li>
+              <li class="nav-item"><a class="navbar-link" href="{% url 'profile' user_id=user.id%}">Welcome:{{user.username}}</a></li>
+              {% else %}
+              <li class="nav-item"><a class="navbar-link" href="{%url 'login' %}"><span class="glyphicon glyphicon-user"></span></p></a></li>
+            {% endif %}
+            </ul>
+            <form class="navbar-form navbar-left">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
+        </div>
+    </nav>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-8" class="blog_posts">
+          {% block body_block %}
+
+          {% endblock%}
+        </div>
+    </div>
+  </div>
+  </body>
+</html>

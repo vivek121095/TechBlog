@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block t_block %}
+  {{profile}}'s PROFILE
+{% endblock %}
+{% block body_block %}
+  <div class="jumbotron">
+    <p>First_name : {{profile.first_name}}</p>
+    <p>Last_name : {{profile.last_name}}</p>
+    <p>Email : {{profile.email}}</p>
+    <p>Bio : {{profile.profile.bio|safe|linebreaksbr}}</p>
+    <p>location : {{profile.profile.location}}</p>
+    <p>Birthdate:{{profile.profile.birth_date}}</p>
+  </div>
+  {% if user.is_authenticated and user.id == profile.id %}
+    <a class="btn btn-success" href="{% url 'update_profile' %}">Update Your Profile</a>
+  {% endif %}
+{% endblock %}

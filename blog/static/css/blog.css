@@ -1,0 +1,63 @@
+.techfont{
+  font-family: 'Russo One' ,sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.bigbrand{
+  font-size: 1.5em;
+}
+
+.center_stage{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.postdate{
+  text-align: center;
+}
+
+.posttitle{
+  font-family: 'Russo one',sans-serif;
+  text-transform: capitalize;
+  font-size: 3em;
+  text-align: center;
+}
+.postcontent{
+    font-family: 'Monsterrat';
+    font-size : 1.5em;
+    border-top:1px solid lightgrey;
+}
+
+.btn-comment{
+  position: absolute;
+  right: 0px;
+}
+
+.textinputclass {
+  display: block;
+  width: 30% !important;
+  height: 30px !important;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.editable{
+  border-radius: 5px;
+  margin-left: 10px;
+  width: 60%;
+  height: auto;
+}
+
+#custom-navbar{
+  height: 75px;
+}
+
+.extra-space{
+  height: 75px;
+}
+
+.extra-margin{
+  margin: 5px;
+  padding: 5px;
+}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block t_block %}CONFIRM_DELETE{% endblock%}
+{% block body_block %}
+<div class="jumbotron">
+  <form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete {{object}}?</p>
+    <input type="submit" class="btn btn-danger" value="Delete">
+  </form>
+</div>
+{% endblock%}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block t_block %}TECH BLOG{% endblock%}
+{% block body_block %}
+    <div class="center_stage">
+      {% for post in post_list %}
+        <div class="post">
+          <h2><a href="{%url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+          <div class="date">
+            <p><b>Published on:</b> {{post.published_date}}</p>
+            <p><b>Publised by :</b> <a href="{% url 'profile' user_id=post.author.id %}">{{post.author}}</a></p>
+          </div>
+          <a href="{% url 'post_detail' pk=post.pk%}">Comments:{{post.approve_comments.count}}</a>
+        </div>
+      {% endfor %}
+    </div>
+{% endblock%}

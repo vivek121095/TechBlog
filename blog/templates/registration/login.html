@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{% block t_block %}LOGIN{% endblock%}
+{% load crispy_forms_tags %}
+{% block body_block %}
+  <div class="jumbotron">
+    <h2>Please Login:</h2>
+    <h3>(Must be SuperUser,please check with the site admin)</h3>
+    {% if form.errors %}
+      <p>Your username and password did'nt match! please try again.</p>
+    {% endif %}
+    <form action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <input type="submit" class="btn btn-primary" value="Login">
+      <input type="hidden" name="next" value="{{next}}">
+    </form>
+    <br>
+    <p><strong>-- OR --</strong></p>
+    <a class="btn btn-success" href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+  </div>
+{% endblock%}
