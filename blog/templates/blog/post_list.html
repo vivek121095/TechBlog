@@ -2,6 +2,7 @@
 {% block t_block %}TECH BLOG{% endblock%}
 {% block body_block %}
     <div class="center_stage">
+        <h2> Recent Posts</h2>
       {% for post in posts %}
         <div class="post">
           <h2><a href="{%url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
