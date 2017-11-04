@@ -1,20 +1,27 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.utils import timezone
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.views.generic import (TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView)
+from django.views.generic import (ListView,DetailView,CreateView,UpdateView,DeleteView)
 from blog.models import Post, Comment ,Profile
 from blog.forms import PostForm,CommentForm,UserForm,ProfileForm
 from django.urls import reverse_lazy
 from django.db import transaction
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.contrib.auth.models import User
 
-class PostListView(ListView):
-    model = Post
-    def get_queryset(self):
-        return Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
+def PostListView(request):
+    post_list = Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
+    paginator = Paginator(post_list,5)
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    return render(request, 'post_list.html', {'posts': posts})
 
 class PostDetailView(DetailView):
     model = Post
