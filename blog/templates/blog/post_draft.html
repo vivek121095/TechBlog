@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block t_block %}DRAFT{% endblock%}
 {% block body_block %}
-<h2>Here are your Drafts</h2>
+{% if posts==[] %}
+<h3> You have no drafts.</h3>
+{% else %}
+  <h2>Here are your Drafts</h2>
+  <hr>
+{% endif %}
   {% for post in posts %}
     <div class="post">
       <p class="date">created:{{post.create_date|date:'d-m-Y'}}</p>
